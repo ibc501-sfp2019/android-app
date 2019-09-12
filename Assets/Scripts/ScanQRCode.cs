@@ -19,7 +19,7 @@ public class ScanQRCode : MonoBehaviour
 		quadMat.mainTexture = webCamTexture;
 		webCamTexture.Play ();
 
-		InvokeRepeating ("Scan", 1f, 1f);
+		InvokeRepeating ("Scan", 1f, 0.5f);
 	}
 
 	void Update()
@@ -72,8 +72,13 @@ public class ScanQRCode : MonoBehaviour
 		if (webCamTexture != null && webCamTexture.width > 100) 
 		{
 			resultText = Decode(webCamTexture.GetPixels32 (), webCamTexture.width, webCamTexture.height);
-			Debug.Log (resultText);
-		}
+            if(resultText != null)
+            {
+                GameManager.instance.readJson = resultText;
+                GameManager.instance.LoadScene("ReadQRCode");
+            }
+            //Debug.Log (resultText);
+        }
 	}
 
 	public string Decode(Color32[] colors, int width, int height)
@@ -87,12 +92,12 @@ public class ScanQRCode : MonoBehaviour
 		return null;
 	}
 
-	void OnGUI()
+	/*void OnGUI()
 	{
 		var text = "web cam size = " + webCamTexture.width + " x " + webCamTexture.height;
 		text += "\nrotation = " + webCamTexture.videoRotationAngle;
 		text += "\nscreen size = " + Screen.width + " x " + Screen.height;
 		text += "\nresultText = " + resultText;
 		GUI.Label(new Rect(0, 0, Screen.width, Screen.height), text);
-	}
+	}*/
 }

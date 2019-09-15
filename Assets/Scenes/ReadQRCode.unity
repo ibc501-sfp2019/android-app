@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIText: {fileID: 778409752}
+  camera: {fileID: 1290237072}
 --- !u!4 &1199552535
 Transform:
   m_ObjectHideFlags: 0

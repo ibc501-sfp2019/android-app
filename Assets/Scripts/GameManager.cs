@@ -24,15 +24,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        //Debug.Log("=========click");
         SceneManager.LoadScene(sceneName);
-        //instance.StartCoroutine(Load(sceneName));
-        //instance.StartCoroutine(FadeOut(instance.faderObj, instance.faderImg));
-    }
-
-    public string ReadJson(string Json)
-    {
-        string returnJson = File.ReadAllText(Application.dataPath + "/Resources/Json/" + Json + ".json");
-        return returnJson;
     }
 }

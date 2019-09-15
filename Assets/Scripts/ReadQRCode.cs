@@ -22,8 +22,7 @@ public class ReadQRCode : MonoBehaviour
         x = float.Parse(jsonData["rotation"]["x"].ToString());
         y = float.Parse(jsonData["rotation"]["y"].ToString());
         z = float.Parse(jsonData["rotation"]["z"].ToString());
-        float w = float.Parse(jsonData["rotation"]["w"].ToString());
-        camera.transform.rotation = new Quaternion(x, y, z, w);
+        camera.transform.rotation = Quaternion.Euler(x, y, z);
 
         UIText.text = GameManager.instance.readJson;
     }

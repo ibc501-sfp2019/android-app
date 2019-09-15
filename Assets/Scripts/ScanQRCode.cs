@@ -75,9 +75,8 @@ public class ScanQRCode : MonoBehaviour
             if(resultText != null)
             {
                 GameManager.instance.readJson = resultText;
-                GameManager.instance.LoadScene("ReadQRCode");
+                GameManager.instance.LoadScene("SnitchWorld");
             }
-            //Debug.Log (resultText);
         }
 	}
 
@@ -91,13 +90,4 @@ public class ScanQRCode : MonoBehaviour
 		}
 		return null;
 	}
-
-	/*void OnGUI()
-	{
-		var text = "web cam size = " + webCamTexture.width + " x " + webCamTexture.height;
-		text += "\nrotation = " + webCamTexture.videoRotationAngle;
-		text += "\nscreen size = " + Screen.width + " x " + Screen.height;
-		text += "\nresultText = " + resultText;
-		GUI.Label(new Rect(0, 0, Screen.width, Screen.height), text);
-	}*/
 }

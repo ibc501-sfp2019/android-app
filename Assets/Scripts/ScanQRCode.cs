@@ -28,16 +28,12 @@ public class ScanQRCode : MonoBehaviour
 
 		var screenAspect = (float)Screen.width / Screen.height;
 		var webCamAspect = (float)webCamTexture.width / webCamTexture.height;
-		//Debug.Log ("screenAspect: " + screenAspect + " " + "webCamAspect " + webCamAspect);
-		//Debug.Log ("webCam.width: "+webCamTexture.width+" "+"webCam.height: "+webCamTexture.height);
 
 		var rot90 = (webCamTexture.videoRotationAngle / 90) % 2 != 0;
-		//Debug.Log ("rot90: " + rot90);
 		if (rot90) 
 		{
 			webCamAspect = 1.0f / webCamAspect;
 		}
-		//Debug.Log ("webCamAspect " + webCamAspect); //0.5625
 
 		float sx, sy;
 		if (webCamAspect < screenAspect) //0.5625 > 0.5622189
@@ -50,7 +46,6 @@ public class ScanQRCode : MonoBehaviour
 			sx = screenAspect;
 			sy = screenAspect / webCamAspect;
 		}
-		//Debug.Log ("sx "+sx+" sy "+sy);
 
 		if (rot90) 
 		{
@@ -62,7 +57,6 @@ public class ScanQRCode : MonoBehaviour
 		}
 			
 		var mirror = webCamTexture.videoVerticallyMirrored;
-		//Debug.Log ("mirror " + mirror);
 		quadMat.mainTextureOffset = new Vector2(0, mirror ? 1 : 0);
 		quadMat.mainTextureScale = new Vector2(1, mirror ? -1 : 1);
 	}

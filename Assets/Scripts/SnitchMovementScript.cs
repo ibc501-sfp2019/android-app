@@ -22,7 +22,6 @@ public class SnitchMovementScript : MonoBehaviour
     IEnumerator arrangeLocationInfos()
     {
         if (locationInfos == null || locationInfos.Count < 1) yield break;
-        // Debug.Log("start");
         Double now = (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0, DateTimeKind.Utc)).TotalSeconds;
         foreach (LocationInfo location in locationInfos)
         {
@@ -36,7 +35,6 @@ public class SnitchMovementScript : MonoBehaviour
             size = locationInfos.Count;
             yield break;
         }
-        // Debug.Log("end");
     }
 
     private void move()

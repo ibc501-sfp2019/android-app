@@ -51,16 +51,13 @@ public class SnitchLocationManagerScript : MonoBehaviour
         yield return request.SendWebRequest();
 
         if (request.isNetworkError) {
-            Debug.Log("Network Error Occured with error : " + request.error);
             yield break;
         }
         JsonData response = JsonMapper.ToObject(request.downloadHandler.text);
         if (!response.IsObject) {
-            Debug.Log("Json Parse Error");
             yield break;
         }
         if ((int) ResponseStatus.OK != (int) response["status"]) {
-            Debug.Log("Status is not 200, status : " + response["status"]);
             yield break;
         }
         foreach(JsonData ballInfo in response["data"]) {
@@ -86,6 +83,5 @@ public class SnitchLocationManagerScript : MonoBehaviour
             }
             script.locationInfos = list;
         }
-        Debug.Log("Update Locations");
     }
 }

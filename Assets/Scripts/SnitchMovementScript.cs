@@ -19,21 +19,28 @@ public class SnitchMovementScript : MonoBehaviour
 
     private PeriodicRoutine periodicRoutine;
 
+    private double startTimestamp;
+
+    private double getUnixTimeTamp()
+    {
+        return startTimestamp + Time.time;
+    }
+
     IEnumerator arrangeLocationInfos()
     {
         if (locationInfos == null || locationInfos.Count < 1) yield break;
-        Double now = (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0, DateTimeKind.Utc)).TotalSeconds;
-        foreach (LocationInfo location in locationInfos)
-        {
-            if (location.time < now) {
-                locationInfos.Remove(location);
-                yield return null;
-            }
-            if ((location.time - now) < eps) {
+        var enumerator = locationInfos.GetEnumerator();
+        int idx=0;
+        while (enumerator.MoveNext()) {
+            idx++;
+            LocationInfo location = enumerator.Current;
+            double diff = location.time - getUnixTimeTamp();
+            if (0 < diff && diff < eps) {
                 currentLocationInfo = location;
+                locationInfos.RemoveRange(0, idx);
+                size = locationInfos.Count;
+                yield break;
             }
-            size = locationInfos.Count;
-            yield break;
         }
     }
 
@@ -45,6 +52,7 @@ public class SnitchMovementScript : MonoBehaviour
 
     void Start()
     {
+        startTimestamp = (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0, DateTimeKind.Utc)).TotalSeconds;
         periodicRoutine = new PeriodicRoutine(0.05f);
         periodicRoutine.setRoutine(arrangeLocationInfos);
     }

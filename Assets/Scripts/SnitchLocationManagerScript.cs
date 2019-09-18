@@ -21,7 +21,7 @@ public class SnitchLocationManagerScript : MonoBehaviour
     [SerializeField]
     private int playId=1;
     [SerializeField]
-    public string serverDomain="http://133.11.59.240:8000";
+    public string serverDomain="http://3.15.2.236:8000";
 
     private Dictionary<int, SnitchMovementScript> snitchMovementScriptDict;
 

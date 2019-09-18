@@ -21,7 +21,7 @@ public class SnitchLocationManagerScript : MonoBehaviour
     [SerializeField]
     private int playId=1;
     [SerializeField]
-    public string serverDomain="http://133.11.59.240:8000";
+    public string serverDomain="http://3.15.2.236:8000";
 
     private Dictionary<int, SnitchMovementScript> snitchMovementScriptDict;
 
@@ -35,7 +35,7 @@ public class SnitchLocationManagerScript : MonoBehaviour
             SnitchMovementScript script = snitch.GetComponent<SnitchMovementScript>();
             snitchMovementScriptDict.Add(script.snitchId, script);
         }
-        periodicRoutine = new PeriodicRoutine(0.5f);
+        periodicRoutine = new PeriodicRoutine(1.2f);
         periodicRoutine.setRoutine(updateLocationInfos);
     }
 
@@ -65,7 +65,7 @@ public class SnitchLocationManagerScript : MonoBehaviour
             List<LocationInfo> preInfos = script.locationInfos;
             List<LocationInfo> list = new List<LocationInfo>();
             double lastestTime = 0;
-            if (preInfos != null) {
+            if (preInfos != null && preInfos.Count > 0) {
                 list = preInfos;
                 lastestTime = list[list.Count - 1].time;
             }

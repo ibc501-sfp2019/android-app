@@ -4,7 +4,7 @@ using UnityEngine;
 using LitJson;
 using UnityEngine.SpatialTracking;
 
-public class ReadQRCode : TrackedPoseDriver
+public class ReadQRCode : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

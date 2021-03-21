@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playId: 1
-  serverDomain: http://3.15.2.236:8000
+  serverDomain: http://18.218.193.152:8000
 --- !u!4 &1994395863
 Transform:
   m_ObjectHideFlags: 0
